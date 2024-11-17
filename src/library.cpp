@@ -1,7 +1,7 @@
 #include "Library.h"
 
 // 책을 추가하는 함수
-void Library::addBook(string title, string author) {
+void Library::addBook(const string& title, const string& author) {
     books.emplace_back(title, author);
     // push_back은 객체를 복사해서 벡터에 추가, 객체가 미리 있을 때 유용
     // emplace_back은 객체를 즉시 생성
@@ -9,7 +9,7 @@ void Library::addBook(string title, string author) {
 }
 
 // 책을 대출하는 함수
-void Library::borrowBook(string title) {
+void Library::borrowBook(const string& title) {
     for (auto& book : books) {
         if (book.title == title) {
             // 책이 이미 대출되어있는 경우
@@ -27,7 +27,7 @@ void Library::borrowBook(string title) {
 }
 
 // 책을 반남하는함수
-void Library::returnBook(string title) {
+void Library::returnBook(const string& title) {
     for (auto& book : books) {
         if (book.title == title) {
             // 책이 대출되어있지 않는 경우
