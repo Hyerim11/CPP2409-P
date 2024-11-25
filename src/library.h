@@ -10,11 +10,14 @@ class Library {
     vector<Book> books;
 
     // 책 추가, 저자가 없을경우 unknown
-    void addBook(const string& title, const string& author = "unknown");
+    void AddBook(const string& title, const string& author = "unknown");
+
+    // 책 삭제
+    void RemoveBook(const string& title);
 
     // 책 대출
-    void borrowBook(const string& title);
+    void BorrowBook(const string& title);
 
     // 책 반납
-    void returnBook(const string& title);
+    void ReturnBook(const string& title);
 };
