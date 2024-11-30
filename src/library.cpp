@@ -38,7 +38,7 @@ void Library::BorrowBook(const string& title) {
     cout << title << " 을/를 대츨할 수 없습니다." << endl;
 }
 
-// 책을 반남하는함수
+// 책을 반납하는함수
 void Library::ReturnBook(const string& title) {
     for (auto& book : books) {
         if (book.title == title) {
@@ -54,4 +54,27 @@ void Library::ReturnBook(const string& title) {
     }
     // 책이 존재하지 않는 경우
     cout << title << " 을/를 반납할 수 없습니다." << endl;
+}
+
+// 도서관의 책 목록을 볼 수 있는 함수
+void Library::BookList() {
+    if (books.empty()) {
+        cout << "도서관에 책이 없습니다. " << endl;
+        return;
+    }
+
+    else {
+        cout << "현재 도서 목록" << endl;
+        for (const auto& book : books) {
+            cout << "제목: " << book.title;
+            cout << ", 저자: " << book.author;
+            cout << ", 상태: ";
+            if (book.isBorrowed == true) {
+                cout << "대출 중" << endl;
+            } else {
+                cout << "대출 가능" << endl;
+            }
+        }
+    }
+    cout << endl;
 }

@@ -26,15 +26,15 @@ void UserMenu(Library& library) {
 
     while (true) {
         cout << "도서관리 시스템" << endl;
-        cout << "0. 관리자 메뉴" << endl;
+        cout << "0. 시스템 종료" << endl;
         cout << "1. 도서 대출" << endl;
         cout << "2. 도서 반납" << endl;
-        cout << "3. 시스템 종료" << endl;
-
+        cout << "3. 도서 목록" << endl;
+        cout << "4. 관리자 메뉴" << endl;
         cin >> choice;
 
         if (choice == 0) {
-            AdminMenu(library);
+            break;
         } else if (choice == 1) {
             cout << "대출할 도서 제목: ";
             cin >> title;
@@ -44,8 +44,9 @@ void UserMenu(Library& library) {
             cin >> title;
             library.ReturnBook(title);
         } else if (choice == 3) {
-            break;
-            ;
+            library.BookList();
+        } else if (choice == 4) {
+            AdminMenu(library);
         } else {
             cout << "잘못된 입력입니다. 다시 입력하세요." << endl;
         }
@@ -65,7 +66,7 @@ void AdminMenu(Library& library) {
         cin >> choice;
 
         if (choice == 0) {
-            return;
+            exit(0);  // 프로그램의 즉시 종료
         } else if (choice == 1) {
             cout << "추가할 도서 제목: ";
             cin >> title;
@@ -77,7 +78,7 @@ void AdminMenu(Library& library) {
             cin >> title;
             library.RemoveBook(title);
         } else if (choice == 3) {
-            exit(0);  // 프로그램의 즉시 종료
+            return;
         } else {
             cout << "잘못된 입력입니다. 다시 입력하세요." << endl;
         }

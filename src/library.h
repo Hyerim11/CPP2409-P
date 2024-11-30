@@ -20,4 +20,7 @@ class Library {
 
     // 책 반납
     void ReturnBook(const string& title);
+
+    // 책 목록
+    void BookList();
 };
