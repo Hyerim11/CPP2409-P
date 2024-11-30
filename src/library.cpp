@@ -1,5 +1,8 @@
 #include "Library.h"
 
+#include <iomanip>
+#include <iostream>
+
 // 책을 추가하는 함수
 void Library::AddBook(const string& title, const string& author) {
     books.emplace_back(title, author);
@@ -12,6 +15,11 @@ void Library::AddBook(const string& title, const string& author) {
 void Library::RemoveBook(const string& title) {
     for (auto i = books.begin(); i != books.end(); ++i) {
         if (i->title == title) {
+            if (i->isBorrowed == true) {
+                cout << title << "이/가 대출 중이라 삭제가 불가능합니다." << endl;
+                return;
+            }
+
             books.erase(i);
             cout << title << " 이/가 삭제되었습니다." << endl;
             return;
@@ -63,18 +71,19 @@ void Library::BookList() {
         return;
     }
 
-    else {
-        cout << "현재 도서 목록" << endl;
-        for (const auto& book : books) {
-            cout << "제목: " << book.title;
-            cout << ", 저자: " << book.author;
-            cout << ", 상태: ";
-            if (book.isBorrowed == true) {
-                cout << "대출 중" << endl;
-            } else {
-                cout << "대출 가능" << endl;
-            }
+    cout << "- 현재 도서 목록 -" << endl;
+    cout << left << setw(20) << "Title" << setw(20) << "Author" << setw(10) << "Status" << endl;
+    cout << "-----------------------------------------------------" << endl;
+    for (const auto& book : books) {
+        cout << left << setw(20) << book.title;
+        cout << setw(20) << book.author;
+        cout << setw(10);
+        if (book.isBorrowed == true) {
+            cout << "대출 중" << endl;
+        } else {
+            cout << "대출 가능" << endl;
         }
     }
+
     cout << endl;
 }

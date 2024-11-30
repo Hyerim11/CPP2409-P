@@ -1,9 +1,11 @@
+#include <iomanip>
 #include <iostream>
 #include <string>
 #include <vector>
 
 #include "Library.h"
 using namespace std;
+
 void UserMenu(Library& library);
 void AdminMenu(Library& library);
 
@@ -58,10 +60,10 @@ void AdminMenu(Library& library) {
     string title, author;
     while (true) {
         cout << "관리자 메뉴" << endl;
-        cout << "0. 이전으로 돌아가기" << endl;
+        cout << "0. 시스템 종료" << endl;
         cout << "1. 도서 추가" << endl;
         cout << "2. 도서 삭제" << endl;
-        cout << "3. 시스템 종료" << endl;
+        cout << "3. 이전으로 돌아가기" << endl;
 
         cin >> choice;
 
