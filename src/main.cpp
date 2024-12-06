@@ -13,9 +13,10 @@ int main() {
     Library library;
     string title;
 
-    library.AddBook("Human Acts", "Han Kang");
-    library.AddBook("Justice", "Michael J. Sandel");
-    library.AddBook("Chunhyangjeon");
+    library.AddBook("Literature", "book1", "author1");
+    library.AddBook("Literature", "book2", "author2");
+    library.AddBook("Literature", "book3");
+    library.AddBook("Technology", "book4", "author4");
 
     UserMenu(library);
 
@@ -24,7 +25,7 @@ int main() {
 
 void UserMenu(Library& library) {
     int choice;
-    string title;
+    string title, genre;
 
     while (true) {
         cout << "도서관리 시스템" << endl;
@@ -32,8 +33,10 @@ void UserMenu(Library& library) {
         cout << "1. 도서 대출" << endl;
         cout << "2. 도서 반납" << endl;
         cout << "3. 도서 목록" << endl;
-        cout << "4. 관리자 메뉴" << endl;
+        cout << "4. 장르별 도서 추천" << endl;
+        cout << "5. 관리자 메뉴" << endl;
         cin >> choice;
+        cout << endl;
 
         if (choice == 0) {
             break;
@@ -47,7 +50,12 @@ void UserMenu(Library& library) {
             library.ReturnBook(title);
         } else if (choice == 3) {
             library.BookList();
+
         } else if (choice == 4) {
+            genre = library.SelectGenre();
+            library.RecommendBook(genre);
+
+        } else if (choice == 5) {
             AdminMenu(library);
         } else {
             cout << "잘못된 입력입니다. 다시 입력하세요." << endl;
@@ -55,9 +63,10 @@ void UserMenu(Library& library) {
     }
     return;
 }
+
 void AdminMenu(Library& library) {
-    int choice;
-    string title, author;
+    int choice, choice_genre;
+    string title, author, genre;
     while (true) {
         cout << "관리자 메뉴" << endl;
         cout << "0. 시스템 종료" << endl;
@@ -66,15 +75,21 @@ void AdminMenu(Library& library) {
         cout << "3. 이전으로 돌아가기" << endl;
 
         cin >> choice;
+        cout << endl;
 
         if (choice == 0) {
             exit(0);  // 프로그램의 즉시 종료
         } else if (choice == 1) {
             cout << "추가할 도서 제목: ";
             cin >> title;
+
             cout << "도서의 저자: ";
             cin >> author;
-            library.AddBook(title, author);
+
+            genre = library.SelectGenre();
+
+            library.AddBook(genre, title, author);
+
         } else if (choice == 2) {
             cout << "삭제할 도서 제목: ";
             cin >> title;

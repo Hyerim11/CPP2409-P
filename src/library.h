@@ -9,7 +9,7 @@ class Library {
     vector<Book> books;
 
     // 책 추가, 저자가 없을경우 unknown
-    void AddBook(const string& title, const string& author = "unknown");
+    void AddBook(const string& genre, const string& title, const string& author = "unknown");
 
     // 책 삭제
     void RemoveBook(const string& title);
@@ -22,4 +22,8 @@ class Library {
 
     // 책 목록
     void BookList();
+
+    void RecommendBook(const string& genre);
+
+    string SelectGenre();
 };
