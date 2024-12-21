@@ -84,7 +84,7 @@ void Library::BookList() {
 
     cout << "- 현재 도서 목록 -" << endl;
     cout << left << setw(20) << "Genre" << setw(20) << "Title" << setw(20) << "Author" << setw(10) << "Status" << endl;
-    cout << "-----------------------------------------------------" << endl;
+    cout << "------------------------------------------------------------------------" << endl;
     for (const auto& book : books) {
         cout << left << setw(20) << book.genre;
         cout << setw(20) << book.title;
@@ -102,6 +102,8 @@ void Library::BookList() {
 
 // 장르별로 책을 추천해줌
 void Library::RecommendBook(const string& genre) {
+    bool book_found = false;
+
     if (books.empty()) {
         cout << "도서관에 책이 없습니다. " << endl;
         cout << endl;
@@ -110,10 +112,11 @@ void Library::RecommendBook(const string& genre) {
 
     cout << "도서 목록: " << genre << endl;
     cout << left << setw(20) << "Title" << setw(20) << "Author" << setw(10) << "Status" << endl;
-    cout << "-----------------------------------------------------" << endl;
+    cout << "----------------------------------------------------" << endl;
 
     for (const auto& book : books) {
         if (book.genre == genre) {
+            book_found = true;
             cout << left << setw(20) << book.title;
             cout << setw(20) << book.author;
             cout << setw(10);
@@ -123,6 +126,10 @@ void Library::RecommendBook(const string& genre) {
                 cout << "대출 가능" << endl;
             }
         }
+    }
+
+    if (book_found == false) {
+        cout << genre << " 장르의 책이 도서관에 없습니다." << endl;
     }
 
     cout << endl;
